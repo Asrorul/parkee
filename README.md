@@ -10,7 +10,10 @@ parkee/
 │   └── receipt.robot      # Test cases for receipt functionality
 ├── Resource/
 │   └── resource.robot     # Shared resources and keywords
-└── requirements.txt       # Python dependencies
+├── requirements.txt       # Python dependencies
+└── .github/
+    └── workflows/
+        └── robot-tests.yml # GitHub Actions workflow
 ```
 
 ## Prerequisites
@@ -90,4 +93,33 @@ After running tests, Robot Framework generates the following reports:
 - `output.xml`: Machine-readable results data
 
 Screenshots are automatically captured on test failures.
+
+## Running Tests with GitHub Actions
+
+You can run the tests using GitHub Actions in two ways:
+
+### Method 1: Automatic Run
+
+Tests will run automatically when you:
+1. Push code to the main branch
+2. Create or update a pull request
+
+### Method 2: Manual Run
+
+1. Go to your repository on GitHub
+2. Click the "Actions" tab
+3. Click "Robot Framework Tests" in the left sidebar
+4. Click the "Run workflow" button (blue button)
+5. You can optionally set:
+   - Location ID (default: 06R)
+   - Parking slip number (default: 06R4OL0DACB0)
+6. Click the green "Run workflow" button
+
+### View Test Results
+
+After the workflow completes:
+1. Click on the completed workflow run
+2. Scroll down to "Artifacts"
+3. Download the `robot-test-results` zip file
+4. Extract and open `report.html` to view the results
 
