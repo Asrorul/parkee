@@ -1,0 +1,21 @@
+# Robot Framework outputs
+*.html
+output.xml
+log.html
+report.html
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# WebDriver logs
+geckodriver*.log
+chromedriver*.log
+
+# Screenshots
+*.png
+*.jpg
+*.jpeg
