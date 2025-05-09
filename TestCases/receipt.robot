@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource    ../Resource/resource.robot
-Resource    ../Keywords/browser.robot
+Resource    ../Keywords/receipt.robot
 Resource    ../Config/env.robot
 Test Setup          Start Browser
 Test Teardown       Close Browser

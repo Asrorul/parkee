@@ -5,6 +5,18 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      location_id:
+        description: 'Location ID'
+        required: true
+        default: '06R'
+        type: string
+      parking_slip:
+        description: 'Parking slip number'
+        required: true
+        default: '06R4OL0DACB0'
+        type: string
 
 jobs:
   test:
@@ -23,21 +35,34 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Install Firefox
+    - name: Install Firefox and geckodriver
       run: |
         sudo apt-get update
         sudo apt-get install -y firefox
-
-    - name: Install geckodriver
-      run: |
         wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
         tar -xzf geckodriver-v0.33.0-linux64.tar.gz
         sudo mv geckodriver /usr/local/bin/
         rm geckodriver-v0.33.0-linux64.tar.gz
 
+    - name: Set test parameters
+      run: |
+        if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+          echo "Using provided parameters"
+          echo "LOCATION_ID=${{ github.event.inputs.location_id }}" >> $GITHUB_ENV
+          echo "PARKING_SLIP=${{ github.event.inputs.parking_slip }}" >> $GITHUB_ENV
+        else
+          echo "Using default parameters"
+          echo "LOCATION_ID=06R" >> $GITHUB_ENV
+          echo "PARKING_SLIP=06R4OL0DACB0" >> $GITHUB_ENV
+        fi
+
     - name: Run Robot Framework Tests
       run: |
-        robot --variable HEADLESS:True TestCases/receipt.robot
+        robot \
+          --variable HEADLESS:True \
+          --variable LOCATION_ID:${{ env.LOCATION_ID }} \
+          --variable PARKING_SLIP:${{ env.PARKING_SLIP }} \
+          TestCases/receipt.robot
 
     - name: Upload test results
       uses: actions/upload-artifact@v3

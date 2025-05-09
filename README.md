@@ -38,17 +38,52 @@ parkee/
    pip install -r requirements.txt
    ```
 
-## Running Tests
+## Local Setup
 
-By default, tests run in headless mode. To run all tests:
-```bash
-robot TestCases/receipt.robot
-```
+1. Install Firefox browser if not already installed
+   - Download from [Firefox website](https://www.mozilla.org/firefox/)
 
-To run tests in non-headless mode (useful for debugging):
-```bash
-robot --variable HEADLESS:False TestCases/receipt.robot
-```
+2. Install Python 3.11 or higher if not already installed
+   - Download from [Python website](https://www.python.org/downloads/)
+
+3. Create and activate a virtual environment:
+   ```bash
+   # Create virtual environment
+   python -m venv venv
+
+   # Activate virtual environment
+   # On Windows:
+   .\venv\Scripts\activate
+   # On Unix or MacOS:
+   source venv/bin/activate
+   ```
+
+4. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Running Tests Locally
+
+1. Run tests in headless mode (default):
+   ```bash
+   robot TestCases/receipt.robot
+   ```
+
+2. Run tests in non-headless mode (for debugging):
+   ```bash
+   robot --variable HEADLESS:False TestCases/receipt.robot
+   ```
+
+3. Run tests with different parameters:
+   ```bash
+   robot --variable LOCATION_ID:06R --variable PARKING_SLIP:06R4OL0DACB0 TestCases/receipt.robot
+   ```
+
+4. View test reports:
+   - `log.html`: Detailed test execution log
+   - `report.html`: Test results summary
+   - Screenshots (if tests fail) will be saved in the project root
 
 ## Test Reports
 
