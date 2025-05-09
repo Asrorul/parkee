@@ -1,8 +1,12 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource    ../Config/env.robot
+Resource    ../Resource/resource.robot
+
+*** Variables ***
+${RECEIPT_URL}    ${BASE_URL}/?l=${LOCATION_ID}&ps=${PARKING_SLIP}
 
 *** Keywords ***
-
 
 Wait For Receipt Page
     [Documentation]    Waits for receipt page to load and verifies basic elements

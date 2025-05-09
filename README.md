@@ -10,10 +10,7 @@ parkee/
 │   └── receipt.robot      # Test cases for receipt functionality
 ├── Resource/
 │   └── resource.robot     # Shared resources and keywords
-├── requirements.txt       # Python dependencies
-└── .github/
-    └── workflows/
-        └── robot-tests.yml # GitHub Actions workflow
+└── requirements.txt       # Python dependencies
 ```
 
 ## Prerequisites
@@ -94,23 +91,3 @@ After running tests, Robot Framework generates the following reports:
 
 Screenshots are automatically captured on test failures.
 
-## CI/CD
-
-This project uses GitHub Actions for continuous integration. The workflow:
-- Runs on push to main branch and pull requests
-- Sets up Python, Firefox, and required dependencies
-- Executes all tests
-- Uploads test results and failure screenshots as artifacts
-
-You can view test results in the Actions tab of the GitHub repository.
-
-## Contributing
-
-1. Create a new branch for your changes
-2. Make your changes and commit them
-3. Push to your branch and create a pull request
-4. The GitHub Actions workflow will automatically run tests on your PR
-
-## License
-
-[Your License Here]
